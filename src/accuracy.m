@@ -1,4 +1,4 @@
-function correct = accuracy( ourAns, teacherAns )
+function correct = accuracy( n, m, ourAns, teacherAns )
 %ACCURACY computes accuracy of our segmentation result. The formula is
 %define as Accuracy = 1 - Error^2/Max_error^2. Error = norm(ourAns -
 %teacherAns). Max_error^2 = e1 + e2 + e3 + e4. e1 = e3 = (n^2 + m^2)/4. n is #
@@ -16,16 +16,18 @@ error = sum(error);
 % teacherAns
 % ourAns
 
-inverse_sensitivity = 0.05;
+
 %determine max square error for two center points
-scaleP = inverse_sensitivity;
-size = [480, 640];
+cp = 0.05;
+scaleP = cp * 2;
+size = [n, m];
 nsize = size.^2;
-nsize =sum(nsize);
+nsize = sum(nsize);
 maxe1e3 = scaleP*nsize;
 
 %determine max square error for two radii
-scaleR = inverse_sensitivity;
+cr = 0.05;
+scaleR = cr;
 maxe2 = scaleR.^2.*teacherAns(3);
 maxe4 = scaleR.^2.*teacherAns(6);
 

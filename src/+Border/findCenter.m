@@ -5,17 +5,26 @@ function centerPos = findCenter( irisImage )
 
 import Border.*;
 
-centerPos = [];
-columnSum = sum(irisImage);
-rowSum = sum(irisImage,2);
-
+% centerPos = [];
+% columnSum = sum(irisImage);
+% rowSum = sum(irisImage,2);
+% 
 % find the center peak of columnSum
-centerPos(2) = twoValley(columnSum);
-
+% centerPos(2) = twoValley(columnSum);
+% 
 % find the center peak of rowSum
-centerPos(1) = twoValley(rowSum');
+% centerPos(1) = twoValley(rowSum');
 
 % insert btr
+%btr Center line 16
+MSGID = 'images:imfindcircles:warnForLargeRadiusRange';
+warning('off', MSGID);
+[centers, radii, metric] = imfindcircles(irisImage,[20 90]);
+warning('on', MSGID);
+[r index] = max(radii);
+centerPos = centers(index,:);
+centerPos = fliplr(centerPos);
+
 centerPos = round(centerPos);
 end
 

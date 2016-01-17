@@ -1,5 +1,5 @@
 function example(classPath, fileName, testImage)
-
+clc
 import Core.*;
 import Border.*;
 
@@ -88,7 +88,7 @@ disp('8. Draw our answer in green successfully!');
 flrCenterPos = fliplr(centerPos);
 ourAns = [flrCenterPos, innerDis(1), flrCenterPos, outerDis(1)];
 global accu;
-accu = accuracy(ourAns, teacherAns);
+accu = accuracy(rowCount, colCount, ourAns, teacherAns);
 disp('9. Evaluate accuracy successfully!');
 
 %% save eye image with iris segmentation
